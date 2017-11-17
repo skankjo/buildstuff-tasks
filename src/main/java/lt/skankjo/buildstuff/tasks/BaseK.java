@@ -12,28 +12,22 @@ public class BaseK {
         int d = arr[1];
 
         int max = IntStream.range(2, 90)
-                .map(base -> countWhileEquals(baseK(n, base), d))
+                .map(base -> baseK(n, base, d))
                 .reduce((a, b) -> Math.max(a, b))
                 .getAsInt();
 
-        System.out.print(max);
+        System.out.println(max);
     }
 
-    private static List<Integer> baseK(int n, int base) {
-        List<Integer> result = new ArrayList<>();
+    private static int baseK(int n, int base, int d) {
         int a;
+        int count = 0;
         while (n > 0) {
             a = n % base;
-            result.add(a);
+            if (a != d) break;
+            count++;
             n /= base;
         }
-        return result;
-    }
-
-    private static int countWhileEquals(List<Integer> seq, int d) {
-        int count = 0;
-        Iterator<Integer> it = seq.iterator();
-        while (it.hasNext() && it.next() == d) count++;
         return count;
     }
 }
