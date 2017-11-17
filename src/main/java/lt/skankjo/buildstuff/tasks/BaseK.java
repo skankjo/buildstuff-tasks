@@ -11,12 +11,12 @@ public class BaseK {
         int n = arr[0];
         int d = arr[1];
 
-        int max = IntStream.range(2, 90)
-                .map(base -> baseK(n, base, d))
-                .reduce((a, b) -> Math.max(a, b))
-                .getAsInt();
+        int result = -1;
+        for (int base = 2; base < 90; base++) {
+            result = Math.max(result, baseK(n, base, d));
+        }
 
-        System.out.println(max);
+        System.out.println(result);
     }
 
     private static int baseK(int n, int base, int d) {
